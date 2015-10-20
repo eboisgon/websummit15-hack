@@ -1,4 +1,4 @@
-# Small hack to use List of attendees and statups at WebSummit 2015
+# Small hack to use List of attendees and startups at WebSummit 2015
 
 This is short description of the process: 
 
