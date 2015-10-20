@@ -25,7 +25,7 @@ function checkTwitter($username){
 		}
 	}
 
-foreach( $SQL->query2assoc("SELECT `id`,`twitter_url` FROM scrap.`startups` where `twitter_url`!='' and twitter_followers_count=0 and twitter_url_2 is Null") as $r){
+foreach( $SQL->query2assoc("SELECT `id`,`twitter_url` FROM ".PUBLIC_DATABASE_DATABASE.".`startups` where `twitter_url`!='' and twitter_followers_count=0 and twitter_url_2 is Null") as $r){
 	//print_r($r);
 	$twitter = str_replace("https://twitter.com/","",$r['twitter_url']);
 	$twitter = str_replace("http://twitter.com/","",$twitter);
@@ -40,13 +40,13 @@ foreach( $SQL->query2assoc("SELECT `id`,`twitter_url` FROM scrap.`startups` wher
 	$res=checkTwitter($twitter);
 	if($res and $res[0]){
 
-	print("update scrap.`startups` set `twitter_url_2` = '".$SQL->e($res[0]['url'])."',
+	print("update ".PUBLIC_DATABASE_DATABASE.".`startups` set `twitter_url_2` = '".$SQL->e($res[0]['url'])."',
 			`twitter_url` = '".$SQL->e($twitter)."',
 			`twitter_followers_count` = '".$res[0]['followers_count']."',
 			`twitter_friends_count` = '".$res[0]['friends_count']."',
 			`twitter_description` = '".$SQL->e($res[0]['description'])."'
 			 where id=".$r['id']);
-	$SQL->query("update scrap.`startups` set `twitter_url_2` = '".$SQL->e($res[0]['url'])."',
+	$SQL->query("update ".PUBLIC_DATABASE_DATABASE.".`startups` set `twitter_url_2` = '".$SQL->e($res[0]['url'])."',
 			`twitter_url` = '".$SQL->e($twitter)."',
 			`twitter_followers_count` = '".$res[0]['followers_count']."',
 			`twitter_friends_count` = '".$res[0]['friends_count']."',

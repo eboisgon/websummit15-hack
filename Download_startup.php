@@ -26,7 +26,7 @@ for($i=1;$i<100;$i++){
 	$list=$ws->_response;
 	foreach($list['startups'] as $company){
 	 //print_r($company);
-	 $SQL->insert('scrap.startups', $company); 
+	 $SQL->insert(PUBLIC_DATABASE_DATABASE.'.startups', $company); 
 	}
 }
 ?>

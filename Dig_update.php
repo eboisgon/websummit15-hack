@@ -8,7 +8,7 @@ $SQL= new sqlQueries( PUBLIC_DATABASE_HOST, PUBLIC_DATABASE_DATABASE,PUBLIC_DATA
 
 
 
- foreach( $SQL->query2assoc("SELECT `id`, `website_url` FROM scrap.`startups`") as $r){
+ foreach( $SQL->query2assoc("SELECT `id`, `website_url` FROM ".PUBLIC_DATABASE_DATABASE.".`startups`") as $r){
 
 	print($r['website_url']."\n");
 	//clean the urls	
@@ -43,7 +43,7 @@ $SQL= new sqlQueries( PUBLIC_DATABASE_HOST, PUBLIC_DATABASE_DATABASE,PUBLIC_DATA
 	print($dns_mx.$dns_spf);
 
 
-	$SQL->query("update scrap.`startups` set 
+	$SQL->query("update ".PUBLIC_DATABASE_DATABASE.".`startups` set 
 				`dns` = '".json_encode($result)."',
 				`dns_mx` = '".$SQL->e($dns_mx)."',
 				`dns_spf` = '".$SQL->e($dns_spf)."'

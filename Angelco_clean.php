@@ -7,7 +7,7 @@ $SQL= new sqlQueries( PUBLIC_DATABASE_HOST, PUBLIC_DATABASE_DATABASE,PUBLIC_DATA
 
 
 
- foreach( $SQL->query2assoc("SELECT `id`, `company_name`, `angel_startup` FROM scrap.`startups` where `angellist_url`='' and `angel_startup` !=''") as $r){
+ foreach( $SQL->query2assoc("SELECT `id`, `company_name`, `angel_startup` FROM ".PUBLIC_DATABASE_DATABASE.".`startups` where `angellist_url`='' and `angel_startup` !=''") as $r){
 
 	//print_r($r);
 
@@ -17,28 +17,28 @@ $SQL= new sqlQueries( PUBLIC_DATABASE_HOST, PUBLIC_DATABASE_DATABASE,PUBLIC_DATA
 	print($r['company_name']." - ".$temp['name']."\n");	
 	
 	if($r['company_name']==$temp['name']){
-		$SQL->query("update scrap.`startups` set 
+		$SQL->query("update ".PUBLIC_DATABASE_DATABASE.".`startups` set 
 				`angellist_url` = '".$temp['angellist_url']."'
 				 where id=".$r['id']);
 		print("OK"."\n");
 	} elseif(strtolower(trim($r['company_name']))==strtolower(trim($temp['name']))){
-		$SQL->query("update scrap.`startups` set 
+		$SQL->query("update ".PUBLIC_DATABASE_DATABASE.".`startups` set 
 				`angellist_url` = '".$temp['angellist_url']."'
 				 where id=".$r['id']);
 		print("OK"."\n");
 	} elseif(strlen($r['company_name'])>7 and preg_match("/".strtolower(trim($r['company_name']))."/",strtolower(trim($temp['name'])))){
-		$SQL->query("update scrap.`startups` set 
+		$SQL->query("update ".PUBLIC_DATABASE_DATABASE.".`startups` set 
 				`angellist_url` = '".$temp['angellist_url']."'
 				 where id=".$r['id']);
 		print("OK"."\n");
 	} elseif(! preg_match("/".strtolower(trim($r['company_name']))."/",strtolower(trim($temp['name'])))){
-		$SQL->query("update scrap.`startups` set 
+		$SQL->query("update ".PUBLIC_DATABASE_DATABASE.".`startups` set 
 				`angel_startup` = '',
 				`angel_startup_role` = ''
 				 where id=".$r['id']);
 		print("REMOVE"."\n");
 	} else {
-		$SQL->query("update scrap.`startups` set 
+		$SQL->query("update ".PUBLIC_DATABASE_DATABASE.".`startups` set 
 				`angel_startup` = '',
 				`angel_startup_role` = ''
 				 where id=".$r['id']);

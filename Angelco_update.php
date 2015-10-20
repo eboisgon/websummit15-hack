@@ -6,7 +6,7 @@ require_once("libs/db_mysql.php");
 
 $SQL= new sqlQueries( PUBLIC_DATABASE_HOST, PUBLIC_DATABASE_DATABASE,PUBLIC_DATABASE_USER, PUBLIC_DATABASE_PASS);
 
- foreach( $SQL->query2assoc("SELECT `id`, `angellist_url`, `company_name` as `angellist_url` FROM scrap.`startups` where `angel_startup` =''") as $r){
+ foreach( $SQL->query2assoc("SELECT `id`, `angellist_url`, `company_name` as `angellist_url` FROM ".PUBLIC_DATABASE_DATABASE.".`startups` where `angel_startup` =''") as $r){
 
 	//print_r($r);
 	
@@ -48,7 +48,7 @@ $SQL= new sqlQueries( PUBLIC_DATABASE_HOST, PUBLIC_DATABASE_DATABASE,PUBLIC_DATA
 		print_r($info_startup_role);
 		
 		if($info_startup){
-			$SQL->query("update scrap.`startups` set 
+			$SQL->query("update ".PUBLIC_DATABASE_DATABASE.".`startups` set 
 				`angel_startup` = '".$SQL->e(json_encode($info_startup))."',
 				`angel_startup_role` = '".$SQL->e(json_encode($info_startup_role))."'
 				 where id=".$r['id']);
