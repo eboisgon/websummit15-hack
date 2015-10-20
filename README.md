@@ -118,11 +118,11 @@ We run a DNS information request to extract MX and SPF records.
 
 ##Configuration and running 
 
-> 1. Install DB
+###Install DB (MySQL)
 
 You can find the 3 basic tables in the db.sql file
 
-> 2. setup in config.php
+###setup in config.php
 
 $Websummit_tokenauth can be obtained by analysing the JSON calls on https://my.websummit.net/v1/conferences/ws15/info/startups in the page [https://my.websummit.net/ws15/startup-search/#/](https://my.websummit.net/ws15/startup-search/#/). 
 
@@ -140,7 +140,7 @@ curl -k -X POST "https://angel.co/api/oauth/token?client_id=[CLIENTID]&client_se
 
 The twitter credentials are available after creating an app on [https://apps.twitter.com/](http://www.angel.co)
 
-> 3. What to run ?
+###What to run ?
 
 Download.php : download the attendees list and save it in 2 tables : persons and companies
 Download_statup.php : download the startups list
