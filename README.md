@@ -1,10 +1,12 @@
-# Small hack to use list of attendees and startups at WebSummit 2015
+# Small hack to use list of attendees and startups at Web Summit 2015
+
+Visit Mailjet Blog: [How to hack Web Summit](https://www.mailjet.com/blog/how-to-hack-web-summit/#) to learn more about the Mailjet team preparation for the Web Summit 2015  
 
 This is short description of the process: 
 
-## General pdescription of the process
+## General description of the process
 
-###1. Download data from Websummit website
+###1. Download data from Web Summit website
 
 2 sources : 
 	- list of attendees: [https://websummit.net/attendees/featured-attendees](https://websummit.net/attendees/featured-attendees)  (behind there is a API : https://api.cilabs.net/v1/conferences/ws15/info/attendees?page=1). The content is really limited and would require lots of reconciliation of data to be sure of the data recovered (no URL, no twitter... just name of company and name of attendee)
@@ -144,7 +146,7 @@ The twitter credentials are available after creating an app on [https://apps.twi
 
 Download.php : download the attendees list and save it in 2 tables : persons and companies
 Download_statup.php : download the startups list
-Angelco_update.php : get information from Angel.co API . Search with the link provided by Websummit and name of the startup
+Angelco_update.php : get information from Angel.co API . Search with the link provided by Web Summit and name of the startup
 Angelco_clean.php : remove wrong search results from previous script (the 2 scripts could have been merged)
 Twitter_update.php : use Twitter API to get number of follower, url, description form the twitter profile (need to be run several time as limited at 150 calls to Twitter API par hour)
 Dig_update.php : extract DNS information
@@ -155,6 +157,6 @@ The following things could be added :
  - using CrunchBase for more information 
  - running the Angel List script on the attendees companies
  - checking out Facebook for like number on pages
- - matching roles from Angel List with attendees to the Websummit
+ - matching roles from Angel List with attendees to the Web Summit
 
 and lot more ....  
