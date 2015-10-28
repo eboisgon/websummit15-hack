@@ -8,7 +8,12 @@ $SQL= new sqlQueries( PUBLIC_DATABASE_HOST, PUBLIC_DATABASE_DATABASE,PUBLIC_DATA
 for($i=1;$i<200;$i++){
   //print($i."\n");
   //this url is public :) 
-  $info=file_get_contents("https://api.cilabs.net/v1/conferences/ws15/info/attendees?page=".$i);
+  // using curl to bypass ssl error messages on OSX
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_URL, "https://api.cilabs.net/v1/conferences/ws15/info/attendees?page=".$i);
+  $info = curl_exec($ch);
+  curl_close($ch);
   $list=json_decode($info,true);
   foreach($list['attendees'] as $info){
 	//create company 
